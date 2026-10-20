@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+/* Base reset (the Claude viewer used to supply this) */
+:root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+<title>Grace Bartle Keenan</title>
+<meta name="description" content="Grace Bartle Keenan: writer, actor and poet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap">
+<style>
+/* Layout: one reading column set like a playscript — poster type for the name, stage directions in Courier, credits laid out like a theatre programme, a strip of pink tape as the single mark. */
+:root {
+  --paper: #F4F1F2;
+  --surface: #FFFFFF;
+  --ink: #1C1620;
+  --ink-soft: #5B4F57;
+  --rule: #DACFD4;
+  --tape: #F28AB0;
+  --tape-ink: #1C1620;
+  --link-line: #D9467F;
+  --screen: #000000;
+  --f-display: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif;
+  --f-body: "Newsreader", "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-script: "Courier Prime", "Courier New", Courier, monospace;
+  --torn: polygon(1.5% 0, 98.5% 0, 100% 18%, 98.8% 36%, 100% 55%, 98.6% 74%, 100% 100%, 1.2% 100%, 0 82%, 1.4% 62%, 0 44%, 1.6% 24%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141015;
+    --surface: #1D171E;
+    --ink: #EEE8EB;
+    --ink-soft: #ABA0A6;
+    --rule: #352A31;
+    --tape: #E0558A;
+    --tape-ink: #1C1620;
+    --link-line: #F28AB0;
+    --screen: #000000;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141015;
+  --surface: #1D171E;
+  --ink: #EEE8EB;
+  --ink-soft: #ABA0A6;
+  --rule: #352A31;
+  --tape: #E0558A;
+  --tape-ink: #1C1620;
+  --link-line: #F28AB0;
+  --screen: #000000;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, ul, dl, dd, figure, blockquote { margin: 0; padding: 0; }
+ul { list-style: none; }
+img, video { max-width: 100%; }
+
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--link-line); text-decoration-thickness: 2px; text-underline-offset: 4px; transition: background-color .15s, color .15s; }
+a:hover { background: var(--tape); color: var(--tape-ink); text-decoration-color: transparent; }
+a:focus-visible, button:focus-visible, video:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.wrap {
+  max-width: 68rem;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Top bar */
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .5rem 1.75rem; padding-block: 1.25rem; border-bottom: 1px solid var(--rule); }
+.mark { font-family: var(--f-script); font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: .9rem; text-decoration: none; }
+.top nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; }
+.top nav a { font-family: var(--f-script); font-size: .95rem; text-decoration-thickness: 1px; }
+
+/* Hero */
+.hero { padding-block: clamp(3rem, 9vw, 6.5rem) clamp(3.5rem, 8vw, 5.5rem); }
+.name {
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(4.25rem, 16vw, 11rem);
+  line-height: .86;
+  text-transform: uppercase;
+  letter-spacing: .005em;
+  text-wrap: balance;
+}
+.taped { position: relative; isolation: isolate; white-space: nowrap; }
+.taped::before {
+  content: "";
+  position: absolute;
+  left: -.1em; right: -.16em;
+  top: 50%; height: .4em;
+  background: var(--tape);
+  clip-path: var(--torn);
+  transform: rotate(-1.6deg);
+  transform-origin: left center;
+  z-index: -1;
+  animation: lay .75s cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes lay { from { transform: rotate(-1.6deg) scaleX(0); } to { transform: rotate(-1.6deg) scaleX(1); } }
+
+.direction { font-family: var(--f-script); font-style: italic; color: var(--ink-soft); font-size: 1.02rem; line-height: 1.55; max-width: 48ch; }
+.hero .direction { margin-top: 1.75rem; font-size: 1.1rem; }
+.lede { margin-top: 1.5rem; font-size: clamp(1.2rem, 2.3vw, 1.5rem); line-height: 1.5; max-width: 34em; text-wrap: pretty; }
+.hero-actions { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.75rem; }
+.btn { display: inline-block; font-family: var(--f-script); font-weight: 700; font-size: .95rem; text-transform: uppercase; letter-spacing: .1em; text-decoration: none; border: 2px solid var(--ink); padding: .6rem 1.1rem; }
+.btn:hover { border-color: var(--tape); }
+.latest { font-family: var(--f-script); font-size: .95rem; color: var(--ink-soft); line-height: 1.5; }
+.latest a { color: var(--ink); }
+
+/* Sections */
+.section { border-top: 1px solid var(--rule); }
+.section > .wrap { padding-block: clamp(3.5rem, 8vw, 6rem); }
+.sec-head { display: grid; gap: .9rem; margin-bottom: clamp(2rem, 5vw, 3rem); }
+.label { display: flex; align-items: center; gap: .65rem; font-family: var(--f-script); font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: .8rem; color: var(--ink-soft); }
+.dash { width: 1.7rem; height: .55rem; background: var(--tape); clip-path: var(--torn); transform: rotate(-3deg); flex: none; }
+h2 { font-family: var(--f-display); font-weight: 900; text-transform: uppercase; font-size: clamp(2.9rem, 8vw, 5rem); line-height: .9; letter-spacing: .01em; text-wrap: balance; }
+h3 { text-wrap: balance; }
+.sub { font-family: var(--f-script); font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: .8rem; color: var(--ink-soft); padding-bottom: .75rem; border-bottom: 1px solid var(--rule); }
+
+/* Play */
+.play { display: grid; gap: clamp(2.75rem, 6vw, 4.5rem); }
+.play-top { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 2.5rem 4rem; align-items: start; }
+.play-top > * { min-width: 0; }
+.play-title { font-weight: 400; font-style: italic; font-size: clamp(2.6rem, 7vw, 4.4rem); line-height: 1; margin-top: .7rem; }
+.tagline { margin-top: 1.4rem; font-size: clamp(1.3rem, 2.6vw, 1.65rem); line-height: 1.4; max-width: 28em; text-wrap: pretty; }
+.synopsis { margin-top: 1rem; max-width: 36em; text-wrap: pretty; }
+.play-facts { margin-top: 2rem; padding-top: 1.1rem; border-top: 1px solid var(--rule); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; }
+.play-facts > div { min-width: 0; display: grid; gap: .15rem; align-content: start; }
+.play-facts dt { font-family: var(--f-script); font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-soft); }
+.play-facts dd { font-size: 1.02rem; line-height: 1.4; }
+.poster img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); }
+
+.stage img { display: block; width: 100%; height: auto; }
+.stage figcaption, .clip figcaption { margin-top: .8rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .3rem 1.5rem; }
+.stage figcaption .direction, .clip figcaption .direction { max-width: none; }
+.media-credit { font-family: var(--f-script); font-size: .85rem; color: var(--ink-soft); }
+
+.reviews { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 2.25rem 4rem; }
+.reviews blockquote { min-width: 0; border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+.reviews blockquote p { font-style: italic; font-size: clamp(1.5rem, 3vw, 2.15rem); line-height: 1.28; text-wrap: balance; }
+.reviews footer { margin-top: .9rem; font-family: var(--f-script); font-size: .92rem; color: var(--ink-soft); line-height: 1.45; }
+.reviews footer strong { color: var(--ink); font-weight: 700; }
+
+.play-bottom { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 18rem); gap: 2.5rem 4rem; align-items: start; }
+.play-bottom > * { min-width: 0; }
+.runs li { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: .2rem 1.5rem; padding-block: 1.2rem; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.run-date { font-family: var(--f-script); font-weight: 700; font-size: .98rem; font-variant-numeric: tabular-nums; }
+.run-place { font-size: 1.2rem; line-height: 1.35; }
+.run-note { grid-column: 2; font-family: var(--f-script); font-size: .9rem; color: var(--ink-soft); }
+.chip { display: inline-block; margin-left: .5rem; padding: .1rem .45rem; background: var(--tape); color: var(--tape-ink); font-family: var(--f-script); font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; vertical-align: .15em; white-space: nowrap; }
+.clip video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 16; background: var(--screen); }
+.clip figcaption { flex-direction: column; gap: .3rem; }
+.clip figcaption .direction { font-size: .92rem; }
+
+/* Earlier play */
+.earlier { margin-top: clamp(3.5rem, 8vw, 5.5rem); }
+.earlier-body { margin-top: 1.75rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 2rem 4rem; align-items: center; }
+.earlier-body > * { min-width: 0; }
+.earlier-photo img { display: block; width: 100%; height: auto; }
+.earlier-photo figcaption { margin-top: .8rem; display: flex; flex-direction: column; gap: .3rem; }
+.earlier-photo .direction { font-size: .92rem; }
+.credit { margin-top: .6rem; font-family: var(--f-script); font-size: .95rem; color: var(--ink-soft); }
+.wip-body { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+.wip-photo { max-width: 20rem; justify-self: center; }
+.wip-runs { margin-top: 1.75rem; border-top: 1px solid var(--rule); }
+.pull { margin-top: 2rem; border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+.pull p { font-style: italic; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; text-wrap: balance; }
+.pull footer { margin-top: .9rem; font-family: var(--f-script); font-size: .92rem; color: var(--ink-soft); }
+.pull footer strong { color: var(--ink); }
+
+/* Poetry */
+.poetry { margin-top: clamp(3.5rem, 8vw, 5.5rem); }
+.poetry-body { padding-top: 1.25rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .75rem 2rem; }
+.poetry-body p { font-size: clamp(1.3rem, 2.6vw, 1.65rem); line-height: 1.4; }
+.poetry-link { font-family: var(--f-script); font-weight: 700; font-size: .95rem; }
+.poem { margin-top: 2rem; max-width: 50rem; background: var(--surface); border: 1px solid var(--rule); padding: clamp(1.5rem, 5vw, 3.25rem); }
+.poem-title { font-weight: 600; font-size: clamp(1.6rem, 3.5vw, 2.2rem); line-height: 1.15; }
+.poem-lines { margin-top: 1.5rem; display: grid; gap: .45rem; max-width: 40em; }
+.poem-lines p { padding-left: 1.5em; text-indent: -1.5em; font-size: 1.15rem; line-height: 1.55; }
+.poem-by { margin-top: 1.75rem; font-family: var(--f-script); font-size: .88rem; color: var(--ink-soft); }
+
+/* Teaching */
+.jobs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 4rem; border-bottom: 1px solid var(--rule); }
+.jobs li { min-width: 0; display: grid; gap: .25rem; align-content: start; padding-block: 1.4rem; border-top: 1px solid var(--rule); }
+.jobs h3 { font-weight: 600; font-size: 1.25rem; line-height: 1.3; }
+.jobs .org { color: var(--ink-soft); font-size: 1.02rem; }
+.jobs .when { font-family: var(--f-script); font-size: .9rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+/* Training */
+.train li { display: grid; grid-template-columns: 8.5rem minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1.1fr); gap: .25rem 1.5rem; padding-block: 1.15rem; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.group-title { border-bottom: 0; padding-bottom: .6rem; }
+.train + .group-title { margin-top: clamp(2.5rem, 6vw, 3.5rem); }
+.train li:first-child { border-top: 1px solid var(--rule); }
+.prog li { grid-template-columns: 8.5rem minmax(0, 1.5fr) minmax(0, 2.1fr); }
+.prog .kind { font-variant-numeric: tabular-nums; }
+.train li > * { min-width: 0; }
+.kind { font-family: var(--f-script); font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-soft); }
+.course { font-weight: 600; font-size: 1.15rem; line-height: 1.35; }
+.result { font-family: var(--f-script); font-size: .95rem; }
+.inst { color: var(--ink-soft); font-size: 1rem; }
+
+/* Contact */
+.contact-intro { font-size: clamp(1.2rem, 2.3vw, 1.45rem); line-height: 1.5; max-width: 30em; }
+.email-row { margin-top: 1.75rem; display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.1rem; }
+.email { font-family: var(--f-script); font-weight: 700; font-size: clamp(1.15rem, 3.6vw, 1.75rem); user-select: all; overflow-wrap: anywhere; }
+.copy { font-family: var(--f-script); font-weight: 700; font-size: .85rem; text-transform: uppercase; letter-spacing: .1em; background: var(--tape); color: var(--tape-ink); border: 0; padding: .55rem .95rem; cursor: pointer; }
+.copy:hover { filter: brightness(1.06); }
+
+/* Footer */
+.foot { border-top: 1px solid var(--rule); }
+.foot .wrap { padding-block: 2.5rem 3rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; align-items: baseline; }
+.foot small { font-family: var(--f-script); font-size: .85rem; color: var(--ink-soft); }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (max-width: 860px) {
+  .play-top, .reviews, .play-bottom, .jobs, .earlier-body { grid-template-columns: minmax(0, 1fr); }
+  .earlier-photo { max-width: 22rem; }
+  .wip-photo { max-width: 18rem; justify-self: start; }
+  .poster { max-width: 22rem; }
+  .clip { max-width: 20rem; }
+  .train li { grid-template-columns: 6.5rem minmax(0, 1fr); grid-template-areas: "kind course" ". result" ". inst"; }
+  .train .kind { grid-area: kind; } .train .course { grid-area: course; } .train .result { grid-area: result; } .train .inst { grid-area: inst; }
+  .prog li { grid-template-columns: 6.5rem minmax(0, 1fr); grid-template-areas: "kind course" ". inst"; }
+}
+@media (max-width: 600px) {
+  body { font-size: 1.0625rem; }
+  .play-facts { grid-template-columns: minmax(0, 1fr); }
+  .runs li { grid-template-columns: minmax(0, 1fr); }
+  .run-note { grid-column: 1; }
+  .train li { grid-template-columns: minmax(0, 1fr); grid-template-areas: "kind" "course" "result" "inst"; }
+  .prog li { grid-template-columns: minmax(0, 1fr); grid-template-areas: "kind" "course" "inst"; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .taped::before { animation: none; }
+  a { transition: none; }
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Grace Bartle Keenan">
+<meta property="og:description" content="Writer, actor and poet, balancing on the precipice of comedy and tragedy.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231C1620'/%3E%3Cpath d='M4 14.5l24-2.2.6 7.4-24 2.2z' fill='%23F28AB0'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="wrap">
+  <div class="top">
+    <a class="mark" href="#top">Grace Bartle Keenan</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap" aria-labelledby="name">
+    <h1 class="name" id="name">Grace Bartle <span class="taped">Keenan</span></h1>
+    <p class="direction">A writer, actor and poet, balancing on the precipice of comedy and tragedy.</p>
+    <p class="lede">My work unpacks intergenerational trauma and attacks the emotional responsibility women are often expected to carry. I trained at the University of East Anglia, where I received the Malcolm Bradbury Scholarship for Scriptwriting.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#contact">Get in touch</a>
+      <span class="latest">Next: <a href="#writing"><em>Mercy of Sisters</em></a> at Pegasus Theatre, Oxford, 24 October</span>
+    </div>
+  </section>
+
+  <section class="section" id="writing" aria-labelledby="writing-h">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="label"><span class="dash" aria-hidden="true"></span>The Writer</p>
+        <h2 id="writing-h">Writing</h2>
+        <p class="direction">Plays, most recent first.</p>
+      </header>
+
+      <article class="play" aria-labelledby="play-h">
+        <div class="play-top">
+          <div>
+            <p class="label">A new comedy</p>
+            <h3 class="play-title" id="play-h">Mercy of Sisters</h3>
+            <p class="tagline">Five middle-aged siblings devolve into carnage as one sister attempts to finally fly the nest.</p>
+            <p class="synopsis">This brand new comedy is set around Floss's 50th birthday party, where she poses a simple request to her siblings… or so she thought. After all, she has been the sole carer for their ill mother for twenty-five years, so it's fair enough she wants to get away, right? Between the rock of resentment and the hard place of intergenerational trauma, this might not be the renaissance Floss was dreaming of. Chuck in exploding secrets and illicit affairs and you might just have the family argument of the year.</p>
+            <dl class="play-facts">
+              <div><dt>Writer and director</dt><dd>Grace Bartle Keenan</dd></div>
+              <div><dt>Funded by</dt><dd>Nicholas Hooper, composer</dd></div>
+            </dl>
+          </div>
+          <figure class="poster">
+            <img src="poster.jpg" width="1000" height="1414" alt="Poster for Mercy of Sisters on 24 October: four of the cast posed together, with the title in red and the line 'The family argument of the year!'">
+          </figure>
+        </div>
+
+        <figure class="stage">
+          <img src="stage.jpg" width="1800" height="1168" loading="lazy" alt="A scene from Mercy of Sisters at a birthday party: one sister stands centre stage holding something up while the rest of the family look on in shock.">
+          <figcaption>
+            <span class="direction">Floss's 50th birthday party. The Hub, Combe, June 2026.</span>
+            <span class="media-credit">Photo: Geraint Lewis Photography</span>
+          </figcaption>
+        </figure>
+
+        <div class="reviews">
+          <blockquote>
+            <p>“A strong, swift plot… an all-too-recognisably charmless, dysfunctional, mad family world.”</p>
+            <footer><strong>Sally Wainwright</strong>, television writer and producer</footer>
+          </blockquote>
+          <blockquote>
+            <p>“A delight from beginning to end.”</p>
+            <footer><strong>James Kent</strong>, director</footer>
+          </blockquote>
+        </div>
+
+        <div class="play-bottom">
+          <div>
+            <p class="sub">Performances</p>
+            <ul class="runs">
+              <li>
+                <span class="run-date">25–27 June 2026</span>
+                <span class="run-place">The Hub, Combe, Oxfordshire</span>
+                <span class="run-note">Three nights</span>
+              </li>
+              <li>
+                <span class="run-date">24 October 2026</span>
+                <span class="run-place">Pegasus Theatre, Oxford <span class="chip">Coming up</span></span>
+                <span class="run-note">7.30pm</span>
+              </li>
+            </ul>
+          </div>
+          <figure class="clip">
+            <video id="clip" controls playsinline preload="metadata" poster="clip-poster.jpg" width="576" height="1024">
+              <source src="clip.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              <span class="direction">A clip from the June run. 38 seconds, with sound.</span>
+              <span class="media-credit">Videographer: Jonathan Taylor Films</span>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="earlier" aria-labelledby="berthe-h">
+        <p class="sub">Work in progress</p>
+        <div class="earlier-body wip-body">
+          <div>
+            <h3 class="play-title" id="berthe-h">Berthe</h3>
+            <p class="credit">Drama · In development</p>
+            <p class="synopsis">A love-triangle drama about Berthe Morisot, the only woman to exhibit in the first Impressionist exhibition.</p>
+            <ul class="runs wip-runs">
+              <li><span class="run-date">2025</span><span class="run-place">Reading at Cambridge Junction</span></li>
+              <li><span class="run-date">2027</span><span class="run-place">Aiming for a fringe production</span></li>
+            </ul>
+          </div>
+          <figure class="earlier-photo wip-photo">
+            <img src="berthe.jpg" width="404" height="495" loading="lazy" alt="Berthe Morisot's painting The Cheval Glass: a young woman in a white dress studies herself in a tall mirror.">
+            <figcaption>
+              <span class="direction">Berthe Morisot, The Cheval Glass (Psyché), 1876.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="earlier" aria-labelledby="fudge-h">
+        <p class="sub">First professional play</p>
+        <div class="earlier-body">
+          <figure class="earlier-photo">
+            <img src="fudge.jpg" width="1106" height="1542" loading="lazy" alt="The cast of Fudge in summer holiday clothes: one holds a beach umbrella, one kneels with a bodyboard and one sits in a folding camping chair.">
+            <figcaption>
+              <span class="direction">Fudge at INK Festival, April 2024.</span>
+              <span class="media-credit">Photo: Origin8Photography.com</span>
+            </figcaption>
+          </figure>
+          <div>
+            <h3 class="play-title" id="fudge-h">Fudge</h3>
+            <p class="credit">Short play · INK Festival · April 2024</p>
+            <p class="synopsis">An underappreciated, newly single mother takes her children on their first holiday since the divorce, with their Grandpa, who has dementia, in tow. The Cornish trip shows the family at its worst when they get locked out of their Airbnb.</p>
+            <blockquote class="pull">
+              <p>“In young Grace Bartle we are nurturing the next Alan Ayckbourn.”</p>
+              <footer><strong>Libby Purves</strong>, theatre critic</footer>
+            </blockquote>
+          </div>
+        </div>
+      </article>
+
+      <article class="poetry" aria-labelledby="poetry-h">
+        <p class="sub" id="poetry-h">Poetry</p>
+        <div class="poetry-body">
+          <p>Comic poems, published on Substack.</p>
+          <a class="poetry-link" href="https://substack.com/@gracebartle">Read my poems on Substack →</a>
+        </div>
+        <div class="poem" role="group" aria-labelledby="poem-h">
+          <h3 class="poem-title" id="poem-h">You Know Those Restaurants</h3>
+          <div class="poem-lines">
+            <p>With the really earthy names</p>
+            <p>Where the in-house potter serves your meal on a jagged plate which looks like rubble</p>
+            <p>Nicely painted rubble.</p>
+            <p>And the in-house artist paints your portraits during the appetisers but you would really rather she didn’t as it’s only your first date</p>
+            <p>And the in-house quartet is too loud</p>
+            <p>And the in-house sommelier is making you taste the wine through his mouth</p>
+            <p>And the in-house DJ is clashing with the quartet and the in-house motivational speaker</p>
+            <p>And the in-house chef is feeding you with his fingers whilst the in-house writer offers you a poem</p>
+            <p>It goes on and on until you get carried off by the in-house undertaker and the in-house carpenter fashions you a one of a kind coffin.</p>
+            <p>All the in-housers gather to put you in the ground and the in-house gardener plants daffodils next to your head.</p>
+          </div>
+          <p class="poem-by">Grace Bartle Keenan</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="teaching" aria-labelledby="teaching-h">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="label"><span class="dash" aria-hidden="true"></span>The Teacher</p>
+        <h2 id="teaching-h">Teaching</h2>
+        <p class="direction">Drama workshops for children, and one-to-one creative writing and editing for adults and children.</p>
+      </header>
+      <ul class="jobs">
+        <li>
+          <h3>Drama Workshop Leader</h3>
+          <p class="org">Children aged 8 to 11 · Norwich</p>
+          <p class="when">2024 to 2025</p>
+        </li>
+        <li>
+          <h3>Creative Writing Tutor and Editor</h3>
+          <p class="org">One-to-one sessions for adults and children · Online or in person</p>
+          <p class="when">Current</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="training" aria-labelledby="training-h">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="label"><span class="dash" aria-hidden="true"></span>Education</p>
+        <h2 id="training-h">Training</h2>
+      </header>
+      <p class="sub group-title">Writing programmes</p>
+      <ul class="train prog">
+        <li><span class="kind">Now</span><span class="course">Creative Mentor Network</span><span class="inst">Current cohort</span></li>
+        <li><span class="kind">2024–25</span><span class="course">Menagerie Theatre Writers Group</span><span class="inst">Cambridge Junction</span></li>
+        <li><span class="kind">2018–19</span><span class="course">Oxford Playhouse Young Writers</span><span class="inst">Oxford Playhouse</span></li>
+      </ul>
+      <p class="sub group-title">Degrees and awards</p>
+      <ul class="train">
+        <li><span class="kind">MA</span><span class="course">Scriptwriting</span><span class="result">Distinction</span><span class="inst">University of East Anglia</span></li>
+        <li><span class="kind">Scholarship</span><span class="course">Malcolm Bradbury Scholarship for Scriptwriting</span><span class="result">Awarded</span><span class="inst">University of East Anglia</span></li>
+        <li><span class="kind">BA</span><span class="course">Drama and Creative Writing</span><span class="result">First Class Honours</span><span class="inst">University of East Anglia</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="label"><span class="dash" aria-hidden="true"></span>Stage Door</p>
+        <h2 id="contact-h">Get in touch</h2>
+      </header>
+      <p class="contact-intro">For writing, acting and teaching enquiries, email me.</p>
+      <div class="email-row">
+        <a class="email" id="email" href="mailto:gracebartle3@gmail.com">gracebartle3@gmail.com</a>
+        <button class="copy" type="button" id="copy-email" data-copy="email">Copy</button>
+        <span class="sr" aria-live="polite" id="copy-status"></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <small>© 2026 Grace Bartle Keenan</small>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-email');
+  var status = document.getElementById('copy-status');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.getAttribute('data-copy'));
+    var text = el.textContent.trim();
+    var reset = function () { setTimeout(function () { btn.textContent = 'Copy'; }, 1800); };
+    var selectIt = function () {
+      try {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      } catch (e) {}
+      btn.textContent = 'Selected';
+      status.textContent = 'Email address selected. Copy it with your keyboard.';
+      reset();
+    };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = 'Copied';
+          status.textContent = 'Email address copied.';
+          reset();
+        }, selectIt);
+      } else { selectIt(); }
+    } catch (e) { selectIt(); }
+  });
+})();
+</script>
+</body>
+</html>
